@@ -9,12 +9,11 @@ class ClassName(models.Model):
     def __str__(self):
         return self.name
 
-class Description(models.Model):
+class ClassNotes(models.Model):
     topic = models.ForeignKey(ClassName, on_delete = models.CASCADE)
-    text = models.TextField()
+    description = models.TextField()
+    date_added = models.DateTimeField(auto_now_add=True)
+    image = models.ImageField(upload_to='uploads')
     
     def __str__(self):
-        return f"{self.text[:50]}..."
-
-class ImageUpload(models.Model):
-    upload = models.ImageField(upload_to='uploads')
+        return f"{self.description[:50]}..."
