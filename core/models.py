@@ -12,9 +12,9 @@ class ClassName(models.Model):
 class Description(models.Model):
     topic = models.ForeignKey(ClassName, on_delete = models.CASCADE)
     text = models.TextField()
-
-    class Meta:
-        verbose_name_plural = 'Descriptions'
     
     def __str__(self):
         return f"{self.text[:50]}..."
+
+class ImageUpload(models.Model):
+    upload = models.ImageField(upload_to='uploads')
