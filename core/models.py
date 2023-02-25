@@ -1,19 +1,13 @@
+from django.core.validators import FileExtensionValidator
 from distutils.command.upload import upload
 from django.db import models
-import uuid
 
 # Create your models here.
-class ClassName(models.Model):
-    name = models.CharField(max_length = 70)
+class Notes(models.Model):
+    topic = models.CharField(max_length=60)
+    description = models.TextField(max_length=200)
+    upload = models.ImageField(upload_to='notes/', validators=[FileExtensionValidator(allowed_extensions=['jpg', 'jpeg', 'png'])])
+    time_posted = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.name
-
-class ClassNotes(models.Model):
-    topic = models.ForeignKey(ClassName, on_delete = models.CASCADE)
-    description = models.TextField()
-    date_added = models.DateTimeField(auto_now_add=True)
-    image = models.ImageField(upload_to='uploads')
-    
-    def __str__(self):
-        return f"{self.description[:50]}..."
+        return self.description
