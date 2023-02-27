@@ -24,9 +24,12 @@ class UserManager(BaseUserManager):
         user.is_admin = True
         user.save(using=self._db)
         return user
+    
+    class Meta:
+        app_label = 'UserAccount'
 
 class UserAccount(AbstractBaseUser):
-    email = models.EmailField(verbose_length="email address", max_length=200)
+    email = models.EmailField(verbose_name="email address", max_length=200)
     username = models.CharField(max_length=30, unique=True)
     date_joined = models.DateTimeField(auto_now_add=True)
     last_login = models.DateTimeField(null=True, blank=True)
