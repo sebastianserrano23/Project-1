@@ -34,6 +34,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     # my apps 
     "core",
+    "UserAccounts",
     # default apps
     "django.contrib.admin",
     "django.contrib.auth",
